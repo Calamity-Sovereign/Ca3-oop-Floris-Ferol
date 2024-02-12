@@ -250,7 +250,6 @@ public class Main {
                 double price = in.nextDouble();
 
                 shares.add(new Block(qty, price));
-                System.out.println(shares);
 
             }
             else if(command.equals("sell"))
@@ -268,14 +267,13 @@ public class Main {
                         total += bee.quantity*price - bee.quantity* bee.wallet;
                         shares.remove();
 
-                        System.out.println(total);
                     }
                           else{
                         total += (qty + bee.quantity)*price - (qty + bee.quantity)* bee.wallet;
-                        System.out.println(total);
+
 
                         shares.peek().quantity = -qty;
-                        System.out.println(-qty);
+
 
                     }
                 }

@@ -13,9 +13,10 @@ public class Main {
         //question2();
         //question3();
         //question4();
-        question5();
+        //question5();
+          question6();
 
-        //validate("tags_bad.txt");
+
     }
 
     public static void question1() {
@@ -227,8 +228,63 @@ public class Main {
 
     }
 
-}
 
+//////////////////////////////////////////////////////
+//Question 6
+
+    public static void question6()
+    {
+
+        Queue<Block> shares = new ArrayDeque<>();
+
+        Scanner in = new Scanner(System.in);
+        String command=" ";
+
+
+        do {
+            System.out.print(">");
+            command = in.next();
+            if(command.equalsIgnoreCase("buy"))
+            {
+                int qty = in.nextInt();
+                double price = in.nextDouble();
+
+                shares.add(new Block(qty, price));
+                System.out.println(shares);
+
+            }
+            else if(command.equals("sell"))
+            {
+                int qty = in.nextInt();
+                double price = in.nextDouble();
+                double total = 0;
+
+                while(qty > 0 && !shares.isEmpty()){
+                    Block bee = shares.peek();
+
+                    qty -= bee.quantity;
+
+                    if(qty > 0){
+                        total += bee.quantity*price - bee.quantity* bee.wallet;
+                        shares.remove();
+
+                        System.out.println(total);
+                    }
+                          else{
+                        total += (qty + bee.quantity)*price - (qty + bee.quantity)* bee.wallet;
+                        System.out.println(total);
+
+                        shares.peek().quantity = -qty;
+                        System.out.println(-qty);
+
+                    }
+                }
+                System.out.println("This is the total profit:" + total);
+
+            }
+        }while(!command.equalsIgnoreCase("quit"));
+    }
+}
 
 
 
